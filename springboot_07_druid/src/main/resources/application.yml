@@ -1,0 +1,17 @@
+## 写法1：指定type
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://123.56.95.151:3307/mybaits?serverTimezone=UTC
+#    username: root
+#    password: zxcvbnm1
+#    type: com.alibaba.druid.pool.DruidDataSource  # 指定Druid数据源
+
+# 写法2
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://123.56.95.151:3307/mybatis?serverTime=UTC
+      username: root
+      password: zxcvbnm1
