@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://123.56.95.151:3307/mybatis?serverTimezone=UTC
+    username: root
+    password: zxcvbnm1
+
+# 设置MyBatis-plus相关配置
+# 指定数据库表名的前缀为t_
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: t_
