@@ -1,0 +1,8 @@
+# 配置数据库相关连接信息---dataSource对象
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://123.56.95.151:3307/mybatis?serverTimezone=UTC
+    username: root
+    password: zxcvbnm1
+# 类型别名、扫描都被SpringBoot简化了
