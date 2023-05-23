@@ -1,0 +1,17 @@
+country: china
+city: xinjiang
+
+user:
+  name: 张三
+
+
+
+# 创建类，用于封装下面的数据
+# 由Spring 去加载数据到对象中，一定要告诉Spring加载这组信息
+# 使用的时候从Spring中直接获取信息使用
+
+datasource:
+  driver: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost/springboot_db
+  username: root
+  password: 123456
