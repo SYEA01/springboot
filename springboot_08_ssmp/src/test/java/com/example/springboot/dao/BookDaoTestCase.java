@@ -1,5 +1,7 @@
 package com.example.springboot.dao;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.springboot.domain.Book;
@@ -51,13 +53,43 @@ public class BookDaoTestCase {
     }
 
     @Test
-    void testGetPage(){  // 分页
-        IPage page = new Page(1,5); // 第一页，每页显示5条
+    void testGetPage() {  // 分页
+        IPage page = new Page(1, 5); // 第一页，每页显示5条
         bookDao.selectPage(page, null);
     }
 
     @Test
-    void testGetByCondition(){  // 按条件查询
+    void testGetByCondition() {  // 按条件查询
+        //QueryWrapper就是查询条件
+        QueryWrapper<Book> qw = new QueryWrapper<>();
+        qw.like("name", "Spring");  //查询name中包含Spring的数据
+        List<Book> books = bookDao.selectList(qw);
+        books.forEach(System.out::println);
+    }
 
+    @Test
+    void testGetByCondition2() {  // 按条件查询
+        String name = "Spring";
+        //LambdaQueryWrapper就是查询条件
+        LambdaQueryWrapper<Book> lqw = new LambdaQueryWrapper<>();
+        lqw.like(name != null, Book::getName, name);  //查询name中包含Spring的数据, 第一个参数是布尔值，true就拼接like，false不拼接。可不写。
+        List<Book> books = bookDao.selectList(lqw);
+        books.forEach(System.out::println);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
