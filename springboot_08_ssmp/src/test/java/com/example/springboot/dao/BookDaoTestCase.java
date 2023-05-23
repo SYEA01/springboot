@@ -1,5 +1,7 @@
 package com.example.springboot.dao;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.springboot.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +48,16 @@ public class BookDaoTestCase {
     void testGetAll() {
         List<Book> books = bookDao.selectList(null);  // 查询所有
         books.forEach(System.out::println);
+    }
+
+    @Test
+    void testGetPage(){  // 分页
+        IPage page = new Page(1,5); // 第一页，每页显示5条
+        bookDao.selectPage(page, null);
+    }
+
+    @Test
+    void testGetByCondition(){  // 按条件查询
+
     }
 }
