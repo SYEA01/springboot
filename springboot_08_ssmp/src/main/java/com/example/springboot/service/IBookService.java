@@ -7,4 +7,5 @@ import com.example.springboot.domain.Book;
 public interface IBookService extends IService<Book> {
 
     IPage getPage(int currentPage, int pageSize);
+    IPage getPage(int currentPage, int pageSize, Book book);
 }

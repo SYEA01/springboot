@@ -45,11 +45,19 @@ public class BookController2 {
         return new R(true, bookService.getById(id));
     }
 
+    //    @GetMapping("/{currentPage}/{pageSize}")
+//    public R getPage(@PathVariable int currentPage, @PathVariable int pageSize) {
+//        IPage page = bookService.getPage(currentPage, pageSize);
+//        if (currentPage>page.getPages()){
+//            page = bookService.getPage((int)page.getPages(), pageSize);
+//        }
+//        return new R(true, page);
+//    }
     @GetMapping("/{currentPage}/{pageSize}")
-    public R getPage(@PathVariable int currentPage, @PathVariable int pageSize) {
-        IPage page = bookService.getPage(currentPage, pageSize);
-        if (currentPage>page.getPages()){
-            page = bookService.getPage((int)page.getPages(), pageSize);
+    public R getPage(@PathVariable int currentPage, @PathVariable int pageSize, Book book) {
+        IPage page = bookService.getPage(currentPage, pageSize,book);
+        if (currentPage > page.getPages()) {
+            page = bookService.getPage((int) page.getPages(), pageSize,book);
         }
         return new R(true, page);
     }
