@@ -6,6 +6,7 @@ import lombok.Data;
 public class R {
     private Boolean flag; // 代表是否成功
     private Object data;  // 代表返回的数据
+    private String msg;
 
     public R() {
     }
@@ -18,4 +19,16 @@ public class R {
         this.flag = flag;
         this.data = data;
     }
+
+    public R(Boolean flag, String msg) {
+        this.flag = flag;
+        this.msg = msg;
+    }
+
+    public R(String msg) {
+        this.flag = false;
+        this.msg = msg;
+    }
+
+
 }

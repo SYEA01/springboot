@@ -6,6 +6,7 @@ import com.example.springboot.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -17,11 +18,14 @@ public class BookController2 {
 
     @GetMapping
     public R getAll() {
-        return new R(true,bookService.list());
+        return new R(true, bookService.list());
     }
 
     @PostMapping
-    public R save(@RequestBody Book book) {
+    public R save(@RequestBody Book book) throws IOException {
+        if ("123".equals(book.getName())) {
+            throw new IOException();
+        }
         return new R(bookService.save(book));
     }
 
