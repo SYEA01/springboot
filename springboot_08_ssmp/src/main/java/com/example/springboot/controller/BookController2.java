@@ -1,5 +1,6 @@
 package com.example.springboot.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.springboot.domain.Book;
 import com.example.springboot.domain.R;
 import com.example.springboot.service.IBookService;
@@ -46,7 +47,11 @@ public class BookController2 {
 
     @GetMapping("/{currentPage}/{pageSize}")
     public R getPage(@PathVariable int currentPage, @PathVariable int pageSize) {
-        return new R(true, bookService.getPage(currentPage, pageSize));
+        IPage page = bookService.getPage(currentPage, pageSize);
+        if (currentPage>page.getPages()){
+            page = bookService.getPage((int)page.getPages(), pageSize);
+        }
+        return new R(true, page);
     }
 
 }
