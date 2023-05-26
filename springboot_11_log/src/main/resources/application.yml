@@ -12,3 +12,7 @@ logging:
 #    org.example.springboot.controller: debug  # 设置某个包的日志级别
     fenzu2: error  # 对某个组设置日志级别
 
+
+  # 设置日志输出格式
+  pattern:
+    console: "%d [%p] [%t] %m%n"
