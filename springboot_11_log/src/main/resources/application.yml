@@ -1,0 +1,14 @@
+# 开启debug模式，输出调试信息，常用于检查系统运行状况
+#debug: true
+
+# 设置日志级别，root表示根节点，即整体应用日志级别
+logging:
+  # 设置分组，对某个组设置日志级别
+  group:
+    fenzu1: org.example.springboot.service, org.example.springboot.dao
+    fenzu2: org.example.springboot.controller
+  level:
+#    root: info
+#    org.example.springboot.controller: debug  # 设置某个包的日志级别
+    fenzu2: error  # 对某个组设置日志级别
+
