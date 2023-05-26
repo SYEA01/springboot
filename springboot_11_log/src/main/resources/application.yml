@@ -14,5 +14,14 @@ logging:
 
 
   # 设置日志输出格式
-  pattern:
-    console: "%d [%p] [%t] %m%n"
+#  pattern:
+#    console: "%d [%p] [%t] %m%n"
+
+  file:
+    name: server.log
+  logback:
+    rollingpolicy:
+      max-file-size: 4KB # 设置文件最大多大
+      file-name-pattern: server.%d.%i.log  # 设置文件名。比如server.2023-05-27.0.log   %i代表第几个
+
+
