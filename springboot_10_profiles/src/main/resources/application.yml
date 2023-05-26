@@ -1,7 +1,6 @@
 spring:
   profiles:
-    active: dev
-    include: devDB,devMVC  # 可以使用include
-    group:  # 也可以使用group
+    active: @profile.active@
+    group:
       "dev": devDB,devMVC
       "pro": proDB,proMVC
