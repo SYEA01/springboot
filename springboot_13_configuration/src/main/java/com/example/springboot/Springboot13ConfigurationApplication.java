@@ -2,7 +2,6 @@ package com.example.springboot;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.example.springboot.config.ServerConfig;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -29,6 +28,7 @@ public class Springboot13ConfigurationApplication {
 		DruidDataSource ds = ctx.getBean(DruidDataSource.class);
 		System.out.println("ds = " + ds);
 		System.out.println("ds.getDriverClassName() = " + ds.getDriverClassName());
+
 	}
 
 }
