@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.ContentResultMatchers;
+import org.springframework.test.web.servlet.result.HeaderResultMatchers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.result.StatusResultMatchers;
 
@@ -52,6 +53,19 @@ public class WebTest {
         ResultMatcher body = content.json("{\"id\":1,\"name\":\"spriangboot\",\"type\":\"springbo2ot\",\"description\":\"springboot\"}");
 
         action.andExpect(body);  // 匹配
+
+    }
+
+    @Test
+    void testContentType(@Autowired MockMvc mockMvc) throws Exception {
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/books");
+        ResultActions action = mockMvc.perform(builder);
+
+        //定义本次调用的预期值
+        HeaderResultMatchers header = MockMvcResultMatchers.header();
+        ResultMatcher contentType = header.string("Content-Type", "application/json");
+
+        action.andExpect(contentType);  // 匹配
 
     }
 }
