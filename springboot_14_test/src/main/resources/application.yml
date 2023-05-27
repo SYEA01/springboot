@@ -21,3 +21,14 @@ mybatis-plus:
       id-type: auto  # 数据库的自增策略。
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 标准输出，将日志信息输出到控制台
+
+
+# 随机测试用例
+testcase:
+  book:
+    id: ${random.int}
+    id2: ${random.int(10)}  # 10以内的整数
+    type: ${random.int(5,10)}  # 5-10
+    name: ${random.value}
+    uuid: ${random.uuid}
+    publishTime: ${random.long}
