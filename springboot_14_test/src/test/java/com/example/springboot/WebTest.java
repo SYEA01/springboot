@@ -4,12 +4,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.ContentResultMatchers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.result.StatusResultMatchers;
 
@@ -38,5 +40,18 @@ public class WebTest {
         ResultMatcher ok = status.isOk();  // 预期值  200
 
         action.andExpect(ok);  //添加预期值到本次调用过程中进行匹配
+    }
+
+    @Test
+    void testBody(@Autowired MockMvc mockMvc) throws Exception {
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/books");
+        ResultActions action = mockMvc.perform(builder);
+
+        //定义本次调用的预期值
+        ContentResultMatchers content = MockMvcResultMatchers.content();
+        ResultMatcher body = content.json("{\"id\":1,\"name\":\"spriangboot\",\"type\":\"springbo2ot\",\"description\":\"springboot\"}");
+
+        action.andExpect(body);  // 匹配
+
     }
 }
