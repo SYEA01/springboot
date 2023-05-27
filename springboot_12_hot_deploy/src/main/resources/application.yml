@@ -7,6 +7,9 @@ spring:
       url: jdbc:mysql://123.56.95.151:3307/springboot?serverTimezone=UTC
       username: root
       password: zxcvbnm1
+  devtools:
+    restart:
+      exclude: static/**, public/**, config/application.yml  # 不触发热部署的范围
 
 
 # MyBatisPlus相关配置
@@ -17,3 +20,4 @@ mybatis-plus:
       id-type: auto  # 数据库的自增策略。
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 标准输出，将日志信息输出到控制台
+
