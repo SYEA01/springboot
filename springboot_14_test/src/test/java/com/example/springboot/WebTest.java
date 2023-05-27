@@ -68,4 +68,25 @@ public class WebTest {
         action.andExpect(contentType);  // 匹配
 
     }
+
+    @Test
+    void testGetById(@Autowired MockMvc mockMvc) throws Exception {
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/books");
+        ResultActions action = mockMvc.perform(builder);
+
+        //测试状态码
+        StatusResultMatchers status = MockMvcResultMatchers.status();  //当前模拟运行的状态
+        ResultMatcher ok = status.isOk();  // 预期值  200
+        action.andExpect(ok);  //添加预期值到本次调用过程中进行匹配
+
+        //测试响应体
+        ContentResultMatchers content = MockMvcResultMatchers.content();
+        ResultMatcher body = content.json("{\"id\":1,\"name\":\"springboot\",\"type\":\"springboot\",\"description\":\"springboot\"}");
+        action.andExpect(body);  // 匹配
+
+        //测试响应头
+        HeaderResultMatchers header = MockMvcResultMatchers.header();
+        ResultMatcher contentType = header.string("Content-Type", "application/json");
+        action.andExpect(contentType);  // 匹配
+    }
 }
