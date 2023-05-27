@@ -42,6 +42,10 @@ public class BookController2 {
 
     @GetMapping("/{id}")
     public R getById(@PathVariable Integer id) {
+        System.out.println("test hot deploy......");
+        System.out.println("test hot deploy......");
+        System.out.println("test hot deploy......");
+        System.out.println("test hot deploy......");
         return new R(true, bookService.getById(id));
     }
     @GetMapping("/{currentPage}/{pageSize}")
