@@ -11,15 +11,14 @@
 	<groupId>com.example</groupId>
 	<artifactId>springboot_14_test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboot_14_test</name>
-	<description>springboot_14_test</description>
+
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
