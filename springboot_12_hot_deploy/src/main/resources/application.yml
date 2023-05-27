@@ -10,6 +10,7 @@ spring:
   devtools:
     restart:
       exclude: static/**, public/**, config/application.yml  # 不触发热部署的范围
+      enabled: false  # 设置热部署不可用
 
 
 # MyBatisPlus相关配置
