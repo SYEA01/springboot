@@ -2,4 +2,4 @@ spring:
   redis:
     host: 192.168.0.111
     port: 6379
-    client-type: jedis  
+    client-type: jedis
