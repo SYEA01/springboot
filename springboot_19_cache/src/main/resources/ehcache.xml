@@ -9,7 +9,7 @@
     <!--overflowToDisk 超过最大缓存数量是否持久化到磁盘-->
     <!--timeToIdleSeconds 最大不活动间隔，设置过长缓存容易溢出，设置过段无效果。可用于记录时效性数据。例如验证码-->
     <!--timeToLiveSeconds 最大存活时间-->
-    <!--memoryStoreEvictionPolicy 缓存清除策略-->
+    <!--memoryStoreEvictionPolicy 缓存清除策略  lru是长时间不访问的淘汰，lfu是最近访问最少的淘汰-->
     <defaultCache eternal="false"
                   diskPersistent="false"
                   maxElementsInMemory="1000"
