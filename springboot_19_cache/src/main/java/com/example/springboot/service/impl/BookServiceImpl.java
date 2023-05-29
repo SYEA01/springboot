@@ -6,12 +6,16 @@ import com.example.springboot.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
     @Autowired
     private BookDao bookDao;
+
+    //手动模拟缓存
+    private HashMap<Integer,Book> cache = new HashMap();
 
     @Override
     public boolean save(Book book) {
@@ -20,7 +24,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book getById(Integer id) {
-        return bookDao.selectById(id);
+        //如果当前缓存中没有本次要查询的数据，就查询
+        Book book = cache.get(id);
+        if (book==null){
+            Book queryBook = bookDao.selectById(id);
+            cache.put(id,queryBook);
+        }
+        return cache.get(id);
     }
 
     @Override
