@@ -4,6 +4,7 @@ import com.example.springboot.dao.BookDao;
 import com.example.springboot.domain.Book;
 import com.example.springboot.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -15,22 +16,29 @@ public class BookServiceImpl implements BookService {
     private BookDao bookDao;
 
     //手动模拟缓存
-    private HashMap<Integer,Book> cache = new HashMap();
+    private HashMap<Integer, Book> cache = new HashMap();
 
     @Override
     public boolean save(Book book) {
         return bookDao.insert(book) > 0;
     }
 
+    //    @Override
+//    public Book getById(Integer id) {
+//        //如果当前缓存中没有本次要查询的数据，就查询
+//        Book book = cache.get(id);
+//        if (book==null){
+//            Book queryBook = bookDao.selectById(id);
+//            cache.put(id,queryBook);
+//        }
+//        return cache.get(id);
+//    }
+
+
     @Override
+    @Cacheable(value = "cacheSpace",key = "#id")  //value属性指定要使用的缓存名称，key指定通过什么查找这个缓存
     public Book getById(Integer id) {
-        //如果当前缓存中没有本次要查询的数据，就查询
-        Book book = cache.get(id);
-        if (book==null){
-            Book queryBook = bookDao.selectById(id);
-            cache.put(id,queryBook);
-        }
-        return cache.get(id);
+        return bookDao.selectById(id);
     }
 
     @Override
