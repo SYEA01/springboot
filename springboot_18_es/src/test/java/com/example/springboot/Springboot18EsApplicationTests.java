@@ -5,12 +5,20 @@ import com.example.springboot.dao.BookDao;
 import com.example.springboot.domain.Book;
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.bulk.BulkRequest;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.xcontent.XContentType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -117,4 +125,28 @@ class Springboot18EsApplicationTests {
         client.bulk(bulk,RequestOptions.DEFAULT);
 
     }
+
+    //按id查询
+    @Test
+    void testGet() throws IOException {
+        GetRequest request = new GetRequest("books","1");
+        GetResponse response = client.get(request, RequestOptions.DEFAULT);
+        String sourceAsString = response.getSourceAsString();
+        System.out.println("sourceAsString = " + sourceAsString);
+    }
+
+    @Test
+    void testSearch() throws IOException {
+        SearchRequest request = new SearchRequest("books");
+        SearchSourceBuilder bulider = new SearchSourceBuilder();
+        bulider.query(QueryBuilders.termQuery("all","spring"));  //条件
+        request.source(bulider);
+        SearchResponse search = client.search(request, RequestOptions.DEFAULT);
+        SearchHits hits = search.getHits();
+        for (SearchHit hit : hits) {
+            String sourceAsString = hit.getSourceAsString();
+            System.out.println("sourceAsString = " + sourceAsString);
+        }
+    }
+
 }
