@@ -1,0 +1,5 @@
+spring:
+  mail:
+    host: smtp.163.com  # smtp：发邮件；163：网易邮箱，qq：qq邮箱
+    username: aaaaaaaaa@163.com  # 邮箱名称
+    password: bbbbbbbbbbbb  # 授权码
