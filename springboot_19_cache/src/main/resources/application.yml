@@ -14,19 +14,20 @@ spring:
 #    ehcache:
 #      config: ehcache.xml
 
-  # 设定当前缓存使用Redis
-  cache:
-    type: redis
-    redis:
-      use-key-prefix: false  # 是否使用前缀   对应注解中要不要value，如果false，即便设置了value也不存在，风险性高，一般选择true
-      cache-null-values: true  # 是否使用空值
-      key-prefix: aa  # 指定前缀  会显示：aa + 注解中的value
-      time-to-live: 10s  # 最大活动时间,多久过期
 
-  # 配置Redis连接
-  redis:
-    host: 192.168.0.111
-    port: 6379
+  # 设定当前缓存使用Redis
+#  cache:
+#    type: redis
+#    redis:
+#      use-key-prefix: false  # 是否使用前缀   对应注解中要不要value，如果false，即便设置了value也不存在，风险性高，一般选择true
+#      cache-null-values: true  # 是否使用空值
+#      key-prefix: aa  # 指定前缀  会显示：aa + 注解中的value
+#      time-to-live: 10s  # 最大活动时间,多久过期
+#
+#  # 配置Redis连接
+#  redis:
+#    host: 192.168.0.111
+#    port: 6379
 
 
 mybatis-plus:
@@ -36,3 +37,9 @@ mybatis-plus:
       id-type: auto
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+memcached:
+  servers: 192.168.0.111:11211
+  pool-size: 10
+  time-out: 3000
