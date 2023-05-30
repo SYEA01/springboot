@@ -20,12 +20,16 @@ spring:
 
 # 配置jetcache，替代springCache
 jetcache:
-  remote:  # 远程，
-    default:  # 可以设置分多少种管理模式，一种的话是default，多种的话在remote下继续写
-      type: redis
-      host: 192.168.0.111
-      port: 6379
-      poolConfig:  # 必须要有
+  statIntervalMinutes: 1
+  remote:  # 远程缓存配置
+    default:  # 默认的缓存管理模式
+      type: redis  # 缓存类型为Redis
+      host: 192.168.0.111  # Redis服务器主机地址
+      port: 6379  # Redis服务器端口
+      keyConvertor: fastjson  # 使用Fastjson作为键转换器，将键对象转换为字符串
+      valueEncode: java  # 使用Java序列化器对缓存值进行编码
+      valueDecode: java  # 使用Java序列化器对缓存值进行解码
+      poolConfig:  # Redis连接池配置
         maxTotal: 50  # 最大连接数
     sms: # 可以设置分多少种管理模式，一种的话是default，多种的话在remote下继续写
       type: redis
@@ -33,7 +37,8 @@ jetcache:
       port: 6379
       poolConfig: # 必须要有
         maxTotal: 50  # 最大连接数
-  local:  # 本地
+  local:  # 本地缓存配置
     default:
-      type: linkedhashmap
-      keyConvertor: fastjson  # key转换成字符串的工具
+      type: linkedhashmap  # 缓存类型为LinkedHashMap
+      keyConvertor: fastjson  # 使用Fastjson作为键转换器，将键对象转换为字符串
+
