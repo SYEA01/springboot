@@ -27,3 +27,13 @@ jetcache:
       port: 6379
       poolConfig:  # 必须要有
         maxTotal: 50  # 最大连接数
+    sms: # 可以设置分多少种管理模式，一种的话是default，多种的话在remote下继续写
+      type: redis
+      host: 192.168.0.111
+      port: 6379
+      poolConfig: # 必须要有
+        maxTotal: 50  # 最大连接数
+  local:  # 本地
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson  # key转换成字符串的工具
