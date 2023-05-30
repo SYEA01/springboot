@@ -16,3 +16,14 @@ spring:
       url: jdbc:mysql://192.168.0.110:3306/springboot?serverTimezone=UTC
       username: root
       password: zxcvbnm1
+
+
+# 配置jetcache，替代springCache
+jetcache:
+  remote:  # 远程，
+    default:  # 可以设置分多少种管理模式，一种的话是default，多种的话在remote下继续写
+      type: redis
+      host: 192.168.0.111
+      port: 6379
+      poolConfig:  # 必须要有
+        maxTotal: 50  # 最大连接数
