@@ -1,11 +1,18 @@
 server:
   port: 80
 
-# activemq
+## activemq
+#spring:
+#  activemq:
+#    broker-url: tcp://192.168.0.111:61616  # 连接地址
+#  jms:
+#    template:
+#      default-destination: itheima
+#    pub-sub-domain: true  # 如果不设置默认是false，代表点对点模型。设置为true就是广播模型
+
+
+# rabbitmq
 spring:
-  activemq:
-    broker-url: tcp://192.168.0.111:61616  # 连接地址
-  jms:
-    template:
-      default-destination: itheima
-    pub-sub-domain: true  # 如果不设置默认是false，代表点对点模型。设置为true就是广播模型
+  rabbitmq:
+    host: 192.168.0.111
+    port: 5672
