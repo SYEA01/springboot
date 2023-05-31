@@ -11,8 +11,16 @@ server:
 #    pub-sub-domain: true  # 如果不设置默认是false，代表点对点模型。设置为true就是广播模型
 
 
-# rabbitmq
-spring:
-  rabbitmq:
-    host: 192.168.0.111
-    port: 5672
+## rabbitmq
+#spring:
+#  rabbitmq:
+#    host: 192.168.0.111
+#    port: 5672
+
+
+# rocketmq
+rocketmq:
+  name-server: 192.168.0.111:9876
+  producer:  # 生产者
+    group: group_rocketmq  # 自定义组名
+
