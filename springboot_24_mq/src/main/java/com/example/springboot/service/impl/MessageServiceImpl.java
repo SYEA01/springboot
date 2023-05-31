@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
+//@Service
 public class MessageServiceImpl implements MessageService {
     private ArrayList<String> msgList = new ArrayList<>();
 
